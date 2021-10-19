@@ -17,7 +17,7 @@ public class ImpArrays implements IAlquilable {
     private int nRegistrados;
 
     public ImpArrays() {
-        this.nMaxVehiculo = 100;
+        this.nMaxVehiculo = 1;
         this.lista = new Vehiculo[this.nMaxVehiculo];
         this.nRegistrados=0;
     }
@@ -66,14 +66,14 @@ public class ImpArrays implements IAlquilable {
 
     @Override
     public boolean agregarVehiculoRenta(Vehiculo v) {
-        if(this.nRegistrados<this.nMaxVehiculo){
-            this.lista[this.nRegistrados] = v;
-            this.nRegistrados++;
-            return true;
-        }
-        else{
-            return false;
-        }
+        
+        if(this.nRegistrados>=this.nMaxVehiculo)
+            throw new NullPointerException("El vehiculo de placa "+v.getPlaca()+" no puede ser agregado a lista de rentados, Se ha superado el limite de objetos de la lista");
+            
+        this.lista[this.nRegistrados] = v;
+        this.nRegistrados++;
+        return true;
+        
     }
 
     @Override
@@ -87,11 +87,14 @@ public class ImpArrays implements IAlquilable {
             }
         }
         
+        if(eliminado==null) 
+            throw new NullPointerException("El Vehiculo de placa " + v.getPlaca() + "No se encuentra en la lista de rentados" );
+        
         for(int i = posEliminado+1 ; i<this.nRegistrados; i++){
             this.lista[i-1] = this.lista[i];
         }
-        if(eliminado!=null)
-            this.nRegistrados--;
+        
+        this.nRegistrados--;
         
         return eliminado;
         

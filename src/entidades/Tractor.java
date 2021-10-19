@@ -18,6 +18,9 @@ public class Tractor extends Vehiculo {
 
     public Tractor(String placa, int nDiasRenta, double precioPorDia) {
         super(placa);
+        if(nDiasRenta<0 || precioPorDia<0)
+            throw new IllegalArgumentException("Los dias de renta, y el precio por dia no pueden ser negativos");
+        
         this.nDiasRenta = nDiasRenta;
         this.precioPorDia = precioPorDia;
     }
