@@ -6,14 +6,15 @@
 package datos;
 
 import entidades.*;
+import excepciones.*;
 
 /**
  *
  * @author jairo
  */
 public interface IAlquilable {
-    boolean agregarVehiculoRenta(Vehiculo v);
-    Vehiculo eliminarVehiculoDevuelto(Vehiculo v);
-    int getTotalvehiculosAlquilados();
+    boolean agregarVehiculoRenta(Vehiculo v) throws ExcepcionAccesoDatos;
+    Vehiculo eliminarVehiculoDevuelto(Vehiculo v) throws ExcepcionAccesoDatos;
+    int getTotalvehiculosAlquilados()throws ExcepcionAccesoDatos;
     
 }
